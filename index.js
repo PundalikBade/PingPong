@@ -51,4 +51,23 @@
         }
         paddle.style.top = `${paddleY}px`;
       });
+
+  const paddleHeight = paddle.offsetHeight;
+
+       // Track mouse movement inside the table
+  table.addEventListener("mousemove", (event) => {
+    // Get mouse Y relative to table
+    const tableRect = table.getBoundingClientRect();
+    let mouseY = event.clientY - tableRect.top;
+
+    // Center paddle on mouse
+    let paddleY = mouseY - paddleHeight / 2;
+
+    // Keep paddle inside table
+    paddleY = Math.max(0, Math.min(table.offsetHeight - paddleHeight, paddleY));
+
+    // Apply position
+    paddle.style.top = `${paddleY}px`;
+  });
+
     });
