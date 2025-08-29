@@ -23,6 +23,15 @@
 
         ball.style.left = `${ballX}px`;
         ball.style.top = `${ballY}px`;
+       if (
+  ballX + ball.offsetWidth > paddle.offsetLeft &&
+  ballX < paddle.offsetLeft + paddle.offsetWidth &&
+  ballY + ball.offsetHeight > paddle.offsetTop &&
+  ballY < paddle.offsetTop + paddle.offsetHeight
+) {
+  dx *= -1; 
+}
+
 
         if (ballX > table.offsetWidth - ball.offsetWidth || ballX <= 0) dx *= -1;
         if (ballY > table.offsetHeight - ball.offsetHeight || ballY <= 0) dy *= -1;
