@@ -1,46 +1,45 @@
-document.addEventListener("DOMContentLoaded", () => {
-  // Select the table and ball elements
-  let table = document.getElementById("ping-pong-table");
-  let ball = document.getElementById("ball");
+ document.addEventListener("DOMContentLoaded", () => {
+      let table = document.getElementById("ping-pong-table");
+      let ball = document.getElementById("ball");
+      let paddle = document.getElementById("paddle");
 
-  // Initial ball position (X, Y)
-  let ballX = 50;
-  let ballY = 50;
+      // Ball setup
+      let ballX = 50, ballY = 50;
+      let dx = 2, dy = 2;
 
-  // Speed of ball movement (dx for horizontal, dy for vertical)
-  let dx = 2;
-  let dy = 2;
+      // Paddle setup
+      let paddleY = 0;
+      let dpy = 20;
 
-  // Set ball's initial position
-  ball.style.left = `${ballX}px`;
-  ball.style.top = `${ballY}px`;
+      // Initial positions
+      ball.style.left = `${ballX}px`;
+      ball.style.top = `${ballY}px`;
+      paddle.style.top = `${paddleY}px`;
 
-  // Start the game loop (updates ball movement every 10ms)
-  setInterval(() => {
-    // Move the ball by adding dx & dy
-    ballX += dx;
-    ballY += dy;
+      // 🎯 Ball movement loop
+      setInterval(() => {
+        ballX += dx;
+        ballY += dy;
 
-    // Apply new position to the ball
-    ball.style.left = `${ballX}px`;
-    ball.style.top = `${ballY}px`;
+        ball.style.left = `${ballX}px`;
+        ball.style.top = `${ballY}px`;
 
-    /*
-      Bounce logic:
-      - If the ball hits left or right wall → reverse dx
-      - If the ball hits top or bottom wall → reverse dy
-      - We subtract ball.offsetWidth/offsetHeight so the ball 
-        bounces before going outside the container
-    */
+        if (ballX > table.offsetWidth - ball.offsetWidth || ballX <= 0) dx *= -1;
+        if (ballY > table.offsetHeight - ball.offsetHeight || ballY <= 0) dy *= -1;
+      }, 10);
 
-    // Bounce horizontally (left/right walls)
-    if (ballX > table.offsetWidth - ball.offsetWidth || ballX <= 0) {
-      dx *= -1; // reverse horizontal direction
-    }
-
-    // Bounce vertically (top/bottom walls)
-    if (ballY > table.offsetHeight - ball.offsetHeight || ballY <= 0) {
-      dy *= -1; // reverse vertical direction
-    }
-  }, 10); // repeat every 10 milliseconds
-});
+      // 🎯 Paddle movement
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "ArrowUp") {
+          event.preventDefault(); // stop page scrolling
+          paddleY = Math.max(0, paddleY - dpy);
+        } else if (event.key === "ArrowDown") {
+          event.preventDefault();
+          paddleY = Math.min(
+            table.offsetHeight - paddle.offsetHeight,
+            paddleY + dpy
+          );
+        }
+        paddle.style.top = `${paddleY}px`;
+      });
+    });

@@ -10,7 +10,7 @@
 
 #ping-pong-table {
   border: 2px solid black;
-  width: 600px;
+  width: 700px;
   height: 400px;
   position: relative; /* important for absolute children */
   overflow: hidden;   /* keeps ball from going outside visually */
@@ -22,7 +22,7 @@
   height: 75px;
   margin-left: 2px;
   position: absolute;
-  top: 150px;  /* start somewhere in the middle */
+  top: 0px;  /* start somewhere in the middle */
   left: 0;
 }
 
