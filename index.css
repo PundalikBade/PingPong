@@ -1,32 +1,35 @@
-*{
-	box-sizing: border-box;
-
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
 }
 
-*,*::before,*::after{
-	box-sizing: inherit;
+*, *::before, *::after {
+  box-sizing: inherit;
 }
 
-#ping-pong-table{
-	border: 2px solid black;
-	width: 600px;
-	height: 400px;
-	position: relative;
-}
-#paddle
-{
-	background-color: blue;
-	width: 10px;
-	height: 75px;
-	margin-left: 2px;
-	position: absolute;
-
+#ping-pong-table {
+  border: 2px solid black;
+  width: 600px;
+  height: 400px;
+  position: relative; /* important for absolute children */
+  overflow: hidden;   /* keeps ball from going outside visually */
 }
 
-#ball{
-	background-color: red;
-	width: 20px;
-	height: 20px;
-	border-radius: 50%;
-position: absolute;
+#paddle {
+  background-color: blue;
+  width: 10px;
+  height: 75px;
+  margin-left: 2px;
+  position: absolute;
+  top: 150px;  /* start somewhere in the middle */
+  left: 0;
+}
+
+#ball {
+  background-color: red;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  position: absolute;
 }
