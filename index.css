@@ -1,35 +1,96 @@
+/* 🌌 Global Reset */
 * {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
 }
-
-*, *::before, *::after {
-  box-sizing: inherit;
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  font-family: "Segoe UI", Tahoma, sans-serif;
 }
 
+/* 🎯 Game Container */
 #ping-pong-table {
-  border: 2px solid black;
-  width: 700px;
-  height: 400px;
-  position: relative; /* important for absolute children */
-  overflow: hidden;   /* keeps ball from going outside visually */
+  width: 800px;
+  height: 450px;
+  position: relative;       /* 👈 ensures paddles/ball are inside */
+  border-radius: 20px;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+
+  /* Glass look */
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+
+  /* Subtle outer glow */
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6),
+              inset 0 0 25px rgba(255, 255, 255, 0.05);
+
+  overflow: hidden;          /* 👈 prevents visual overflow */
+}
+
+/* ✨ Center line */
+#ping-pong-table::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 2px;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* 🏓 Paddles */
+#paddle, #paddle2 {
+  width: 14px;
+  height: 100px;
+  position: absolute;
+  top: 0;                     /* 👈 start at 0 (no translateY) */
+  border-radius: 10px;
+
+  /* Glassmorphic paddles */
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  transition: top 0.1s linear;
 }
 
 #paddle {
-  background-color: blue;
-  width: 10px;
-  height: 75px;
-  margin-left: 2px;
-  position: absolute;
-  top: 0px;  /* start somewhere in the middle */
-  left: 0;
+  left: 20px;
+}
+#paddle2 {
+  right: 20px;
 }
 
+/* 🔴 Ball */
 #ball {
-  background-color: red;
   width: 20px;
   height: 20px;
   border-radius: 50%;
   position: absolute;
+  background: radial-gradient(circle at 30% 30%, #ff4e50, #f9d423);
+  box-shadow: 0 0 20px rgba(255, 80, 80, 0.8),
+              inset -2px -2px 6px rgba(0, 0, 0, 0.4);
+
+  animation: bounce 0.6s infinite alternate;
+}
+@keyframes bounce {
+  from { transform: scale(1); }
+  to   { transform: scale(1.15); }
+}
+
+/* 🎮 Heading */
+h1 {
+  position: absolute;
+  top: -70px;
+  width: 100%;
+  text-align: center;
+  font-size: 2rem;
+  font-weight: bold;
+  color: white;
+  letter-spacing: 2px;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.6);
 }
