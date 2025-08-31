@@ -18,7 +18,7 @@ Play with **Arrow Keys** (left paddle) and **W / S keys** (right paddle).
 ![Preview Screenshot](screenshot.png)
 
 ## 🌐 Live Demo
-👉 [Play here](https://your-username.github.io/ping-pong-game/)
+👉 [Play here](https://ping-pong-silk-eight.vercel.app/)
 
 ## 🛠️ Tech Stack
 - HTML
